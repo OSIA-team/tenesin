@@ -1,0 +1,3 @@
+#this file sets stop untracking bellow files
+web/.htaccess
+.idea/*
