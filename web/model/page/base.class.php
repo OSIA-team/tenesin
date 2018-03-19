@@ -7,11 +7,13 @@
  */
 
 namespace page;
+use core\core;
+use database\database;
 
 
-class defaultpage
+class basepage
 {
-    public function __construct($method)
+    public function getRenderer($method = NULL)
     {
         if (empty($method[1])) {
             $this->renderDefault();
@@ -30,11 +32,6 @@ class defaultpage
 
     public function renderDefault(){
         echo "render default";
-    }
-
-    public function renderA($options = NULL){
-        echo "A<br>";
-        echo $options[0];
     }
 
 }

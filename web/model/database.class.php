@@ -8,12 +8,7 @@ namespace database;
 use mysqli;
 use core\core;
 class database {
-	private $_host				= 'localhost';
-	private $_user				= 'root';
-	private $_password			= '';
-	private $_database			= 'Bel3s';
 	private $_mysqli			= NULL;
-	private $_inst 				= NULL;
 
 	/**
 	 * Allow the class to send admins a message alerting them to errors

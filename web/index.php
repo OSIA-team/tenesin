@@ -17,14 +17,15 @@ function load_classphp($directory) {
                 load_classphp($directory."/".$file);
             } else {
                 if(strpos($file, '.class.php') !== false) {
+                   //  echo $directory."/".$file."<br>";
                     include_once($directory."/".$file);
                 }
             }
         }
     }
 }
-
 load_classphp('./model');
+// */
 
 \core\core::$configFile = require_once 'config.php';
 $parsedURL = \core\core::requestURL();
@@ -36,7 +37,11 @@ if (isset($_POST)){
 if (class_exists('\page\\'.$parsedURL[0]."page")){
     $class = '\page\\'.$parsedURL[0]."page";
     unset($parsedURL[0]);
+    new \page\basepage();
     $page = new $class($parsedURL);
+} elseif($parsedURL[0] == ''){
+    new \page\basepage();
+    new \page\main();
 } else {
     echo "error";
    // die();
