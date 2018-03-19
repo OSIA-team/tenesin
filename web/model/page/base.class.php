@@ -13,6 +13,10 @@ use database\database;
 
 class basepage
 {
+    public $data = array();
+    public $template = "default";
+
+
     public function getRenderer($method = NULL)
     {
         if (empty($method[1])) {
@@ -22,8 +26,12 @@ class basepage
             $render = ucfirst($render);
             $render = "render".$render;
             unset($method[1]);
-            foreach ($method as $key => $value){
-                $options[] = $value;
+            if (!empty($method)){
+                foreach ($method as $key => $value){
+                    $options[] = $value;
+                }
+            } else {
+                $options = NULL;
             }
 
             $this->$render($options);
@@ -32,6 +40,16 @@ class basepage
 
     public function renderDefault(){
         echo "render default";
+    }
+
+    protected function render(){
+        ob_start();
+        foreach ($this->data as $key => $value){
+            $$key = $value;
+        }
+        require_once "templates/".$this->template.".phtml";
+        ob_flush();
+        ob_end_clean();
     }
 
 }

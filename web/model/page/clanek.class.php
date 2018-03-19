@@ -17,8 +17,13 @@ class clanekpage extends basepage {
     }
 
     public function renderDefault(){
-        echo "render default Clanek";
+        $this->data['nadpis'] = 'Clanky ke cteni';
+        $this->render();
     }
 
+    public function renderRead($options){
+        echo "Clanek -> Cist";
+
+    }
 
 } // */
